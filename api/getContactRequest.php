@@ -1,5 +1,5 @@
 <?php
-require $_SERVER['DOCUMENT_ROOT'] . "/sweetstream_backend/settings/init.php";
+require $_SERVER['DOCUMENT_ROOT'] . "/sweetstream-backend/settings/init.php";
 
 header('Access-Control-Allow-Origin: *');
 
