@@ -17,7 +17,7 @@ foreach ($employees as $employee) {
   $rolesSql = "SELECT roleName, roleId FROM employees_roles JOIN roles ON roles.roleId = role_id WHERE emp_id = " . $employee -> empId . " ORDER BY roleName";
   $roles = $db->sql($rolesSql);
   $employee -> roles = $roles;
-  $employee -> empPhp = $employee -> empPhd === "0" ? false : true;
+  $employee -> empPhd = $employee -> empPhd == 0 ? false : true;
 }
 
 header("HTTP/1.1 200 Ok");
