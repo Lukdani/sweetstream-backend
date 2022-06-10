@@ -1,0 +1,238 @@
+-- phpMyAdmin SQL Dump
+-- version 4.9.7
+-- https://www.phpmyadmin.net/
+--
+-- Vært: localhost:8889
+-- Genereringstid: 10. 06 2022 kl. 00:11:37
+-- Serverversion: 5.7.32
+-- PHP-version: 7.4.12
+
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET time_zone = "+00:00";
+
+--
+-- Database: `sweetstream`
+--
+
+-- --------------------------------------------------------
+
+--
+-- Struktur-dump for tabellen `employees`
+--
+
+DROP TABLE IF EXISTS `employees`;
+CREATE TABLE `employees` (
+  `empId` int(11) NOT NULL,
+  `empName` varchar(100) COLLATE utf8_danish_ci NOT NULL,
+  `empDescription` text COLLATE utf8_danish_ci NOT NULL,
+  `empPhd` tinyint(4) DEFAULT NULL,
+  `empTitle` int(11) NOT NULL,
+  `empLinkedIn` varchar(300) COLLATE utf8_danish_ci NOT NULL,
+  `empImageName` varchar(100) COLLATE utf8_danish_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_danish_ci;
+
+--
+-- Data dump for tabellen `employees`
+--
+
+INSERT INTO `employees` (`empId`, `empName`, `empDescription`, `empPhd`, `empTitle`, `empLinkedIn`, `empImageName`) VALUES
+(1, 'Tomas Kulik', 'Tomas is a cyber security expert. He has extensive experience from the wind domain.\r\n<br/>\r\n<br/>\r\nTomas assists our clients in all cyber security related topics, making sure that zone models are complied with.', 1, 1, 'https://www.linkedin.com/in/tomas-kulik-2b057287/', 'tomas_kulik.png'),
+(2, 'Brian Vraamark', 'With more than 30 years of experience, Brian Vraamark is considered a top capability in the industri.', 0, 1, 'https://www.linkedin.com/in/brian-vraamark-73a2287/', 'brian_vraamark.png'),
+(3, 'Brian Heilskov', 'Brian Heilskov is a co-founder of Sweet Geeks A/S and has worked tirelessly with the wind industry for the past 10 years.', 0, 1, 'https://www.linkedin.com/in/brian-heilskov/', 'brian_heilskov.png'),
+(4, 'Jon Børsen', 'Jon Børsen has 20 years of experience as a developer. Before working\r\n        with the wind industry, Jon worked with transportation planning\r\n        software.', 0, 3, 'https://www.linkedin.com/in/jonborsen/', 'jon_borsen.png'),
+(5, 'Lasse Sjørup', 'Lasse has 25 years of experience as a developer after having studied computer science in Copenhagen. He has 5 years of experience in the wind industry. Before that, Lasse worked with logistics and big data.', 0, 3, 'https://www.linkedin.com/in/lassesjørup/', 'lasse_sjorup.png'),
+(6, 'Michael Fogtmann', 'Michael has a background as software developer. <br/>Today, Michael is renown for his capabilities as a project manager. <br/><br/>Having worked with the wind energy for 4 years, Michael knows the industry.', 0, 2, 'https://www.linkedin.com/in/michael-fogtmann/', 'michael_fogtmann.png');
+
+-- --------------------------------------------------------
+
+--
+-- Struktur-dump for tabellen `employees_roles`
+--
+
+DROP TABLE IF EXISTS `employees_roles`;
+CREATE TABLE `employees_roles` (
+  `emp_roles_id` int(11) NOT NULL,
+  `emp_id` int(11) NOT NULL,
+  `role_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_danish_ci;
+
+--
+-- Data dump for tabellen `employees_roles`
+--
+
+INSERT INTO `employees_roles` (`emp_roles_id`, `emp_id`, `role_id`) VALUES
+(1, 1, 2),
+(2, 1, 4),
+(3, 2, 2),
+(4, 2, 3),
+(5, 3, 1),
+(6, 3, 3),
+(7, 5, 4),
+(8, 5, 3),
+(9, 4, 3),
+(10, 4, 4),
+(12, 2, 4),
+(13, 6, 1);
+
+-- --------------------------------------------------------
+
+--
+-- Struktur-dump for tabellen `leads`
+--
+
+DROP TABLE IF EXISTS `leads`;
+CREATE TABLE `leads` (
+  `leadId` int(11) NOT NULL,
+  `leadDate` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `leadName` varchar(100) COLLATE utf8_danish_ci NOT NULL,
+  `leadEmail` varchar(100) COLLATE utf8_danish_ci DEFAULT NULL,
+  `leadPhone` varchar(12) COLLATE utf8_danish_ci DEFAULT NULL,
+  `leadEmailPref` tinyint(1) DEFAULT NULL,
+  `leadPhonePref` tinyint(1) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_danish_ci;
+
+--
+-- Data dump for tabellen `leads`
+--
+
+INSERT INTO `leads` (`leadId`, `leadDate`, `leadName`, `leadEmail`, `leadPhone`, `leadEmailPref`, `leadPhonePref`) VALUES
+(1, '2022-05-15 10:50:05', 'Testnavn', 'testmail@example.com', '12345678', 1, 0),
+(2, '2022-05-15 10:50:27', 'Testnavn', 'testmail@example.com', '12345678', 1, 0),
+(3, '2022-05-15 10:51:37', 'Testnavn', 'testmail@example.com', '12345678', 1, 0),
+(4, '2022-05-15 16:03:55', 'from frontend', 'also frontend', 'phone', 0, 0),
+(5, '2022-05-15 16:39:40', '', '', '', 0, 0),
+(6, '2022-05-15 18:05:26', '', 'test', '', 0, 0),
+(7, '2022-05-15 18:06:17', '', 'test', '', 0, 0),
+(8, '2022-05-15 18:21:03', 'test', 'test', '', 0, 0),
+(9, '2022-05-15 18:21:36', 'test', 'test', '', 0, 0),
+(10, '2022-05-15 18:21:49', '', 'test', '', 0, 0),
+(11, '2022-05-15 18:21:51', '', 'test', '', 0, 0),
+(12, '2022-05-15 18:23:55', 'test', 'test', '', 0, 0),
+(13, '2022-05-15 18:29:21', '', 'test2', '', 0, 0),
+(14, '2022-05-15 21:19:48', 'Hans', 'test@example.com', '22334455', 1, 0),
+(15, '2022-05-15 21:20:23', 'Hans', 'test@example.com', '11223344', 1, 0),
+(16, '2022-05-15 21:21:08', 'Jens', 'test@example.com', '11223344', 1, 1),
+(17, '2022-05-15 21:22:36', 'Jens', 'test', 'test', 1, 0),
+(18, '2022-05-15 21:24:28', 'Bo', 'test', 'test', 0, 1),
+(19, '2022-05-15 21:25:12', 'jens', 'test', 'test2', 1, 0),
+(20, '2022-05-15 21:27:00', 'sigurd', 'test', 'test', 0, 1),
+(21, '2022-05-15 21:29:00', 'jens', 'test', '', 0, 1),
+(22, '2022-05-15 21:29:45', 'Sigurd', 'test', 'test', 1, 0),
+(23, '2022-05-15 21:30:39', 'hans', 'test', 'test', 0, 1),
+(24, '2022-05-15 21:31:11', 'test', 'test2', '', 1, 0),
+(25, '2022-05-15 21:31:55', 'testnavn', 'mail', '', 1, 0),
+(26, '2022-05-15 21:33:58', 'test', 'test', '', 1, 0),
+(27, '2022-05-15 21:36:17', 'Hans', 'test', '', 1, 0),
+(28, '2022-05-15 21:58:00', 'test', 'tes', '', 0, 1),
+(29, '2022-06-09 17:34:16', 'test', 'test', 'test', 1, 1);
+
+-- --------------------------------------------------------
+
+--
+-- Struktur-dump for tabellen `roles`
+--
+
+DROP TABLE IF EXISTS `roles`;
+CREATE TABLE `roles` (
+  `roleId` int(11) NOT NULL,
+  `roleName` varchar(100) COLLATE utf8_danish_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_danish_ci;
+
+--
+-- Data dump for tabellen `roles`
+--
+
+INSERT INTO `roles` (`roleId`, `roleName`) VALUES
+(1, 'Project management'),
+(2, 'Architecture'),
+(3, 'Consultant'),
+(4, 'Development');
+
+-- --------------------------------------------------------
+
+--
+-- Struktur-dump for tabellen `titles`
+--
+
+DROP TABLE IF EXISTS `titles`;
+CREATE TABLE `titles` (
+  `titleId` int(11) NOT NULL,
+  `titleName` varchar(100) COLLATE utf8_danish_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_danish_ci;
+
+--
+-- Data dump for tabellen `titles`
+--
+
+INSERT INTO `titles` (`titleId`, `titleName`) VALUES
+(1, 'Solution Architect'),
+(2, 'Project Manager'),
+(3, 'Senior Consultant');
+
+--
+-- Begrænsninger for dumpede tabeller
+--
+
+--
+-- Indeks for tabel `employees`
+--
+ALTER TABLE `employees`
+  ADD PRIMARY KEY (`empId`);
+
+--
+-- Indeks for tabel `employees_roles`
+--
+ALTER TABLE `employees_roles`
+  ADD UNIQUE KEY `emp_roles_id` (`emp_roles_id`);
+
+--
+-- Indeks for tabel `leads`
+--
+ALTER TABLE `leads`
+  ADD PRIMARY KEY (`leadId`);
+
+--
+-- Indeks for tabel `roles`
+--
+ALTER TABLE `roles`
+  ADD PRIMARY KEY (`roleId`);
+
+--
+-- Indeks for tabel `titles`
+--
+ALTER TABLE `titles`
+  ADD PRIMARY KEY (`titleId`);
+
+--
+-- Brug ikke AUTO_INCREMENT for slettede tabeller
+--
+
+--
+-- Tilføj AUTO_INCREMENT i tabel `employees`
+--
+ALTER TABLE `employees`
+  MODIFY `empId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
+--
+-- Tilføj AUTO_INCREMENT i tabel `employees_roles`
+--
+ALTER TABLE `employees_roles`
+  MODIFY `emp_roles_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+
+--
+-- Tilføj AUTO_INCREMENT i tabel `leads`
+--
+ALTER TABLE `leads`
+  MODIFY `leadId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
+
+--
+-- Tilføj AUTO_INCREMENT i tabel `roles`
+--
+ALTER TABLE `roles`
+  MODIFY `roleId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- Tilføj AUTO_INCREMENT i tabel `titles`
+--
+ALTER TABLE `titles`
+  MODIFY `titleId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
